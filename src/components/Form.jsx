@@ -18,22 +18,23 @@ const Form = ({ buttonLabel, onSubmit, placeholder, setIsReplying }) => {
   };
 
   return (
-    <div className="flex gap-2 bg-white p-4 rounded-lg justify-between items-start mb-4">
+    <div className="flex gap-2 bg-white p-4 rounded-lg justify-between items-start mb-4 h-fit">
       <picture>
         <source srcSet={avatar.webp} type="image/webp" />
         <img
-          className="w-8 h-8 shrink-0"
+          className="w-8 h-8 shrink-0 hidden md:block"
           src={avatar.png}
           alt={user.username}
         />
       </picture>
+
       <form
-        className="w-full flex gap-4 justify-between"
+        className="w-full flex flex-col md:flex-row  gap-4 justify-between"
         action=""
         onSubmit={handleSubmit}
       >
         <textarea
-          className="flex-1 resize-none border border-[#eaecf1ff] rounded-lg py-4 px-6"
+          className="flex-1 resize-none border border-[#eaecf1ff] rounded-lg py-4 px-6 "
           name=""
           id=""
           rows="2"
@@ -41,12 +42,22 @@ const Form = ({ buttonLabel, onSubmit, placeholder, setIsReplying }) => {
           placeholder={placeholder}
           onChange={handleCommentChange}
         ></textarea>
-        <button
-          className="bg-[#5457b6] text-sm h-fit text-white px-4 py-2 rounded border border-[#5457b6ff] active:bg-[#c3c4efff]"
-          type="submit"
-        >
-          {buttonLabel}
-        </button>
+        <div className=" flex justify-between items-center">
+          <picture>
+        <source srcSet={avatar.webp} type="image/webp" />
+        <img
+          className="w-8 h-8 shrink-0 md:hidden"
+          src={avatar.png}
+          alt={user.username}
+        />
+      </picture>
+          <button
+            className=" md:self-start bg-[#5457b6] text-sm w-fit h-fit text-white px-4 py-2 rounded border border-[#5457b6ff] active:bg-[#c3c4efff]"
+            type="submit"
+          >
+            {buttonLabel}
+          </button>
+        </div>
       </form>
     </div>
   );

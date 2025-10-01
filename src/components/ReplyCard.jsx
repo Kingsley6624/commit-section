@@ -6,15 +6,24 @@ import Form from "./Form";
 
 const ReplyCard = ({ replyingTo, content, user, createdAt, score }) => {
   return (
-    <div className=" pl-8 ">
-      <div className="flex gap-4 bg-white p-4 rounded-lg w-full mb-4">
-        <div className="flex flex-col items-center justify-between bg-[#f5f6faff] px-2 py-3 rounded-lg gap-2 h-fit">
-          <button>
-            <img src={plusIcon} alt="" />
-          </button>
-          <span>{score}</span>
-          <button>
-            <img src={minusIcon} alt="" />{" "}
+    <div className="pl-1 md:pl-8 ">
+      <div className="flex flex-col-reverse md:flex-row gap-4 bg-white p-4 rounded-lg w-full mb-4">
+        <div className="flex items-center md:items-start justify-between gap-3">
+          <div className="flex md:flex-col items-center justify-between bg-[#f5f6faff]  p-2 rounded-lg gap-7 md:gap-2 w-fit h-fit">
+            <button>
+              <img src={plusIcon} alt="" />
+            </button>
+            <span className="text-[#5457b6ff]">{score}</span>
+            <button>
+              <img src={minusIcon} alt="" />{" "}
+            </button>
+          </div>
+          <button
+            className="flex gap-2 items-center text-[#5457b6ff] font-semibold md:hidden"
+            onClick={() => setIsReplying(!isReplying)}
+          >
+            <img src={replyIcon} alt="" />
+            Reply
           </button>
         </div>
 
@@ -29,11 +38,11 @@ const ReplyCard = ({ replyingTo, content, user, createdAt, score }) => {
                   alt={user.username}
                 />
               </picture>
-              <p>{user.username}</p>
-              <span>{createdAt} 12:30pm</span>
+              <p className="text-[#324152ff]">{user.username}</p>
+              <span className="text-[#67707dff]">{createdAt}</span>
             </div>
             <button
-              className="flex gap-2 items-center text-[#5457b6ff] font-semibold"
+              className="md:flex gap-1 items-center text-[#5457b6ff] font-semibold hidden"
               // onClick={() => setIsReplying(!isReplying)}
             >
               <img src={replyIcon} alt="" />
