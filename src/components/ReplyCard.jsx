@@ -3,8 +3,11 @@ import replyIcon from "../assets/images/icon-reply.svg";
 import minusIcon from "../assets/images/icon-minus.svg";
 import plusIcon from "../assets/images/icon-plus.svg";
 import Form from "./Form";
+import { useModal } from "../Context/ModalContext";
 
-const ReplyCard = ({ replyingTo, content, user, createdAt, score }) => {
+const ReplyCard = ({id, replyingTo, content, user, createdAt, score }) => {
+  const { showModal, hideModal } = useModal();
+
   return (
     <div className="pl-1 md:pl-8 ">
       <div className="flex flex-col-reverse md:flex-row gap-4 bg-white p-4 rounded-lg w-full mb-4">
@@ -20,7 +23,7 @@ const ReplyCard = ({ replyingTo, content, user, createdAt, score }) => {
           </div>
           <button
             className="flex gap-2 items-center text-[#5457b6ff] font-semibold md:hidden"
-            onClick={() => setIsReplying(!isReplying)}
+            onClick={()=> showModal(id)}
           >
             <img src={replyIcon} alt="" />
             Reply

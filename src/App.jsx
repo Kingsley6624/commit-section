@@ -1,15 +1,17 @@
 import React from "react";
 import Comment from "./components/Comment";
-import DeleteToast from "./components/DeleteModal";
 import { ModalProvider } from "./Context/ModalContext";
+import { ResourcesProvider } from "./Context/ResourcesContext";
 
 const App = () => {
   return (
-    <ModalProvider>
-      <div className="font-rubik">
-        <Comment />
-      </div>
-    </ModalProvider>
+    <ResourcesProvider>
+      <ModalProvider>
+        <div className="font-rubik">
+          <Comment />
+        </div>
+      </ModalProvider>
+    </ResourcesProvider>
   );
 };
 
