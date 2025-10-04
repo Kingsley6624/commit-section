@@ -1,6 +1,6 @@
 import React from "react";
 import Form from "./Form";
-import CommentCard from "./commentCard";
+import CommentCard from "./CommentCard";
 import ReplyCard from "./ReplyCard";
 import UserReplyCard from "./UserReplyCard";
 import UserCommentCard from "./UserCommentCard";
