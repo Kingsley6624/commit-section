@@ -3,9 +3,11 @@ import replyIcon from "../assets/images/icon-reply.svg";
 import minusIcon from "../assets/images/icon-minus.svg";
 import plusIcon from "../assets/images/icon-plus.svg";
 import Form from "./Form";
+import { useResources } from "../Context/ResourcesContext";
 
-const commentCard = ({ username, createdAt, content, score, user }) => {
+const CommentCard = ({ id, username, createdAt, content, score, user }) => {
   const [isReplying, setIsReplying] = useState(false);
+  const { data, handleReply } = useResources();
   return (
     <div>
       <div className="flex flex-col-reverse md:flex-row gap-4 bg-white p-4 rounded-lg w-full mb-4">
@@ -57,7 +59,7 @@ const commentCard = ({ username, createdAt, content, score, user }) => {
         <Form
           buttonLabel={"REPLY"}
           placeholder={"Add a reply..."}
-          onSubmit={(text) => console.log(text)}
+          onSubmit={(text) => handleReply(id, text, user.username)}
           setIsReplying={setIsReplying}
         />
       )}
@@ -65,4 +67,4 @@ const commentCard = ({ username, createdAt, content, score, user }) => {
   );
 };
 
-export default commentCard;
+export default CommentCard;

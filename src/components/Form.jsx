@@ -10,13 +10,14 @@ const Form = ({ buttonLabel, onSubmit, placeholder, setIsReplying }) => {
     setText(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSubmit(text);
-    setText("");
-    if (setIsReplying) setIsReplying(false);
-  };
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  if (!text.trim()) return;
 
+  await onSubmit(text); // if onSubmit returns a promise
+  setText("");
+  if (setIsReplying) setIsReplying(false);
+};
   return (
     <div className="flex gap-2 bg-white p-4 rounded-lg justify-between items-start mb-4 h-fit">
       <picture>

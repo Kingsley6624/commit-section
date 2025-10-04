@@ -1,12 +1,14 @@
-import React from "react";
+import React, {useState} from "react";
 import replyIcon from "../assets/images/icon-reply.svg";
 import minusIcon from "../assets/images/icon-minus.svg";
 import plusIcon from "../assets/images/icon-plus.svg";
 import Form from "./Form";
-import { useModal } from "../Context/ModalContext";
+import { useResources } from "../Context/ResourcesContext";
 
 const ReplyCard = ({id, replyingTo, content, user, createdAt, score }) => {
-  const { showModal, hideModal } = useModal();
+  
+    const [isReplying, setIsReplying] = useState(false);
+    const { handleReply } = useResources();
 
   return (
     <div className="pl-1 md:pl-8 ">
@@ -23,7 +25,7 @@ const ReplyCard = ({id, replyingTo, content, user, createdAt, score }) => {
           </div>
           <button
             className="flex gap-2 items-center text-[#5457b6ff] font-semibold md:hidden"
-            onClick={()=> showModal(id)}
+            onClick={() => setIsReplying(!isReplying)}
           >
             <img src={replyIcon} alt="" />
             Reply
@@ -46,7 +48,7 @@ const ReplyCard = ({id, replyingTo, content, user, createdAt, score }) => {
             </div>
             <button
               className="md:flex gap-1 items-center text-[#5457b6ff] font-semibold hidden"
-              // onClick={() => setIsReplying(!isReplying)}
+              onClick={() => setIsReplying(!isReplying)}
             >
               <img src={replyIcon} alt="" />
               Reply
@@ -60,14 +62,14 @@ const ReplyCard = ({id, replyingTo, content, user, createdAt, score }) => {
           </p>
         </div>
       </div>
-      {/* {isReplying && (
+      {isReplying && (
         <Form
           buttonLabel={"REPLY"}
           placeholder={"Add a reply..."}
-          onSubmit={(text) => console.log(text)}
+          onSubmit={(text) => handleReply(id, text, replyingTo)}
           setIsReplying={setIsReplying}
         />
-      )} */}
+      )}
     </div>
   );
 };
