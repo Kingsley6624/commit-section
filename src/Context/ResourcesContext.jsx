@@ -7,9 +7,14 @@ const { comments = [], currentUser = {} } = user;
 
 export const useResources = () => useContext(ResourcesContext);
 export const ResourcesProvider = ({ children }) => {
-  const [data, setData] = useState(comments);
+  const [data, setData] = useState(() => {
+    const storedData = localStorage.getItem("commentsData");
+    return storedData ? JSON.parse(storedData) : comments;
+  });
 
-  
+  useEffect(() => {
+    localStorage.setItem("commentsData", JSON.stringify(data));
+  }, [data]);
 
 const handleEdit = (id, newContent) => {
   setData((prev) =>
