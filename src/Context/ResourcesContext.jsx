@@ -6,9 +6,12 @@ const ResourcesContext = createContext();
 const { comments = [], currentUser = {} } = user;
 
 const NewTime = new Date();
-const hour = NewTime.getHours()
+let hour = NewTime.getHours()
 const minutes = NewTime.getMinutes()
-const currentTime = `${hour}:${minutes < 10 ? '0' : ''}${minutes}`;
+const amOrPm = hour >= 12 ? "PM" : "AM";
+hour = hour % 12 || 12;
+const paddedMinutes = minutes.toString().padStart(2, "0");
+const currentTime = `${hour}:${paddedMinutes} ${amOrPm}`;
 
 
 export const useResources = () => useContext(ResourcesContext);
@@ -54,7 +57,7 @@ const handleDelete = (id) => {
   const handleAdd = (newComment) => {
     setData((prev) => [
       ...prev,
-      { id: Date.now(), content: newComment, user: currentUser, score: 0, },
+      { id: Date.now(), content: newComment, user: currentUser, score: 0, createdAt: currentTime, },
     ]);
   };
   const handleReply = (parentId, replyContent, replyingTo) => {
