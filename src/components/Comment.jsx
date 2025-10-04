@@ -14,9 +14,9 @@ const Comment = () => {
       {data.map((user) => (
         <div key={user.id}>
           {user.user.username === currentUser.username ? (
-            <UserCommentCard key={user.id} {...user} />
+            <UserCommentCard {...user} />
           ) : (
-            <CommentCard key={user.id} {...user} />
+            <CommentCard {...user} />
           )}
 
           {/* replies */}
