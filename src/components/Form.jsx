@@ -53,7 +53,7 @@ const Form = ({ buttonLabel, onSubmit, placeholder, setIsReplying }) => {
         />
       </picture>
           <button
-            className=" md:self-start bg-[#5457b6] text-sm w-fit h-fit text-white px-4 py-2 rounded border border-[#5457b6ff] active:bg-[#c3c4efff]"
+            className="relative md:self-start bg-[#5457b6] text-sm w-fit h-fit text-white px-4 py-2 rounded border border-[#5457b6ff] active:bg-[#c3c4efff] before:content-[''] before:absolute before:inset-0 before:bg-white/20 before:opacity-0  hover:before:opacity-100 transition-all"
             type="submit"
           >
             {buttonLabel}
